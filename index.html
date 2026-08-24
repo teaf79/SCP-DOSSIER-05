@@ -3,11 +3,92 @@
   <head>
     <meta charset="UTF-8">
     <title>SCP-DOSSIER-05: Access Status</title>
+    <style>
+      body {
+        background-color: #000000;
+        color: #2b2b2b;
+        font-family: 'Courier New', monospace;
+        text-align: center;
+        padding: 40px;
+      }
+      h1 { 
+        color: #ff5252;
+        margin-bottom: 30px;
+      }
+      .status-row { 
+        margin: 15px 0; 
+        font-size: 1.1em;
+      }
+      #access-panel {
+        margin-top: 40px;
+        display: block;
+      }
+      input {
+        padding: 12px;
+        font-family: inherit;
+        width: 250px;
+        background: #2b2b36;
+        border: 1px solid #4a4a55;
+        color: white;
+        box-sizing: border-box;
+      }
+      button {padding: 12px 24px;
+        font-family: inherit;
+        background: #3a3a47;
+        color: white;
+        border: 1px solid #5a5a6a;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:hover { 
+        background: #555;
+      }
+      .hidden { 
+        display: none; 
+      }
+    </style>
   </head>
   <body>
     <h1>SCP-DOSSIER-05</h1>
-    <p>Object Status: <strong>IN DEVELOPMENT</strong></p>
-    <p>Access Level: <strong>UNAVAILABLE</strong></p>
-    <p>Last Synchronization: <span id="timestamp"></span></p>
+    
+    <p class="status-row">Object Status: <strong>IN DEVELOPMENT</strong></p>
+    <p class="status-row">Access Level: <strong id="level-display">UNAVAILABLE</strong></p>
+    <p class="status-row">Last Synchronization: <span id="timestamp"></span></p>
+
+    <div id="access-panel">
+      <p>Authorization required.</p>
+      <input type="password" id="code-input" placeholder="Enter access code">
+      <br><br>
+      <button onclick="checkAccess()">Enter Access Code</button>
+    </div>
+
+    <div id="secret-zone" class="hidden">
+      <h2 style="color: #4caf50;">ACCESS GRANTED</h2>
+      <p>Authorized personnel only. Data loading...</p>
+      <p>Welcome, Agent.</p>
+    </div>
+
+    <script>
+      function checkAccess() {
+        var input = document.getElementById('code-input').value;
+        var display = document.getElementById('level-display');
+        var panel = document.getElementById('access-panel');
+        var secret = document.getElementById('secret-zone');
+        var timeSpan = document.getElementById('timestamp');
+
+        var now = new Date();
+        timeSpan.textContent = now.toLocaleTimeString();
+
+        if (input === '890M900009079190X15479H971215') {
+          display.textContent = 'LEVEL 5';
+          display.style.color = '#161616';
+          panel.style.display = 'none';
+          secret.style.display = 'block';
+        } else {
+          display.textContent = 'ACCESS DENIED — SCP FOUNDATION RECORDED THIS ATTEMPT. IF YOU ARE AN ATTACKER, THEN STOP TRYING IMMEDIATELY! OTHERWISE, YOU WILL FACE THE CONSEQUENCES.';
+          display.style.color = '#470011';
+        }
+      }
+    </script>
   </body>
 </html>
