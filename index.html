@@ -80,14 +80,16 @@
         timeSpan.textContent = now.toLocaleTimeString();
 
         if (input === '890M900009079190X15479H971215') {
-          display.textContent = 'LEVEL 5';
-          display.style.color = '#161616';
-          panel.style.display = 'none';
-          secret.style.display = 'block';
-          window.location.href = "dossier.html";
-     } else {
-          display.textContent = 'ACCESS DENIED — SCP FOUNDATION RECORDED THIS ATTEMPT. IF YOU ARE AN ATTACKER, THEN STOP TRYING IMMEDIATELY! OTHERWISE, YOU WILL FACE THE CONSEQUENCES.';
-          display.style.color = '#470011';
+    display.textContent = 'LEVEL 5';
+    display.style.color = '#161616';
+    panel.style.display = 'none';
+    secret.style.display = 'block';
+    
+    window.location.href = "dossier.html";
+} else {
+    
+    display.textContent = 'ACCESS DENIED — SCP FOUNDATION RECORDED THIS ATTEMPT. IF YOU ARE AN ATTACKER, THEN STOP TRYING IMMEDIATELY! OTHERWISE, YOU WILL FACE THE CONSEQUENCES.';
+    display.style.color = '#470011';
         }
       }
     </script>
